@@ -63,7 +63,7 @@ class HttpRequestHandler {
             return self
         }
 
-        public func setUrlParams(_ params: [String:Any]) -> CapacitorHttpRequestBuilder {
+        public func setUrlParams(_ params: [String:Any?]) -> CapacitorHttpRequestBuilder {
             if (params.count != 0) {
                 var cmps = URLComponents(url: url!, resolvingAgainstBaseURL: true)
                 if cmps?.queryItems == nil {
@@ -76,7 +76,10 @@ class HttpRequestHandler {
                         arr.forEach { str in
                             urlSafeParams.append(URLQueryItem(name: key, value: str))
                         }
-                    } else {
+                    } else if value == nil || (value as! String).count == 0 {
+                        urlSafeParams.append(URLQueryItem(name: key, value: nil)
+                    }
+                    else {
                         urlSafeParams.append(URLQueryItem(name: key, value: (value as! String)))
                     }
                 }
@@ -155,7 +158,7 @@ class HttpRequestHandler {
         guard let method = httpMethod ?? call.getString("method") else { throw URLError(.dataNotAllowed) }
 
         let headers = (call.getObject("headers") ?? [:]) as! [String: String]
-        let params = (call.getObject("params") ?? [:]) as! [String: Any]
+        let params = (call.getObject("params") ?? [:]) as! [String: Any?]
         let responseType = call.getString("responseType") ?? "text";
         let connectTimeout = call.getDouble("connectTimeout");
         let readTimeout = call.getDouble("readTimeout");
@@ -204,7 +207,7 @@ class HttpRequestHandler {
         let method = call.getString("method") ?? "POST"
         let fileDirectory = call.getString("fileDirectory") ?? "DOCUMENTS"
         let headers = (call.getObject("headers") ?? [:]) as! [String: String]
-        let params = (call.getObject("params") ?? [:]) as! [String: Any]
+        let params = (call.getObject("params") ?? [:]) as! [String: Any?]
         let body = (call.getObject("data") ?? [:]) as [String: Any]
         let responseType = call.getString("responseType") ?? "text";
         let connectTimeout = call.getDouble("connectTimeout");
@@ -250,7 +253,7 @@ class HttpRequestHandler {
         let method = call.getString("method") ?? "GET"
         let fileDirectory = call.getString("fileDirectory") ?? "DOCUMENTS"
         let headers = (call.getObject("headers") ?? [:]) as! [String: String]
-        let params = (call.getObject("params") ?? [:]) as! [String: Any]
+        let params = (call.getObject("params") ?? [:]) as! [String: Any?]
         let connectTimeout = call.getDouble("connectTimeout");
         let readTimeout = call.getDouble("readTimeout");
         let progress = call.getBool("progress") ?? false
