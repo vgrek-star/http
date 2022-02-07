@@ -76,11 +76,10 @@ class HttpRequestHandler {
                         arr.forEach { str in
                             urlSafeParams.append(URLQueryItem(name: key, value: str))
                         }
-                    } else if value == nil || (value as! String).count == 0 {
+                    } else if let val = value as? String {
+                        urlSafeParams.append(URLQueryItem(name: key, value: val.count > 0 ? val : nil))
+                    } else {
                         urlSafeParams.append(URLQueryItem(name: key, value: nil)
-                    }
-                    else {
-                        urlSafeParams.append(URLQueryItem(name: key, value: (value as! String)))
                     }
                 }
 
