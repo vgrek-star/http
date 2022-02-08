@@ -11,8 +11,7 @@
     "docs": "typedoc src/web.ts src/definitions.ts",
     "watch": "tsc --watch",
     "fmt": "npm run prettier -- --write",
-    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
-    "install": "npm run build && npm run ios:build"
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\""
   },
   "author": "Max Lynch <max@ionic.io>, Thomas Vidas <thomas@ionic.io>",
   "license": "MIT",
