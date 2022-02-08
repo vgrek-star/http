@@ -6,10 +6,9 @@
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "scripts": {
-    "build": "npm run clean && tsc && rollup -c rollup.config.js",
+    "build": "tsc && rollup -c rollup.config.js",
     "ios:build": "cd ios && pod install && cd ..",
     "docs": "typedoc src/web.ts src/definitions.ts",
-    "clean": "rimraf ./dist",
     "watch": "tsc --watch",
     "fmt": "npm run prettier -- --write",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
