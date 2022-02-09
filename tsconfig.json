@@ -12,7 +12,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist/esm",
+    "outDir": "out",
     "pretty": true,
     "sourceMap": true,
     "strict": true,
@@ -21,11 +21,7 @@
   "files": [
     "src/index.ts"
   ],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
   "exclude": [
-    "dist/esm"
+    "out"
   ]
 }
